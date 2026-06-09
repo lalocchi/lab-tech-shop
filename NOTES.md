@@ -1,9 +1,7 @@
 # Notes: my design log
 
-**Live URL (Vercel):** _paste your deployed link here_
+**Live URL (Vercel):** https://lab-tech-shop-rho.vercel.app/
 
-> Fill in each section as you build. Keep it short and honest. We grade the
-> reasoning, not the word count. Delete these quote lines as you go.
 
 ## 1. Route and storage choice
 
@@ -69,3 +67,6 @@ The AdBanner component checks the premium flag from localStorage. If the flag is
 - One thing you'd change, add, or clean up, and why.
 I wouldn't use localStorage.Because in that case,even if you give your device to someone they still have premium type.
 I think it would be better to have an account and then have the premium connected to your account in the back,not your local.But it would take so much time to do now and also lab didn't require such thing.
+
+Also , it only removes ad after you refresh it. 
+And also, you can keep the form empty that's a problem but since I have to deliver the lab I don't have the time (sorry)
