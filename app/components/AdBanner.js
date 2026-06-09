@@ -10,6 +10,10 @@
 //   1. a scrolling marquee strip across the top of the content
 //   2. a floating, blinking ad card pinned to the bottom-right corner
 
+"use client";
+
+import { useEffect, useState } from "react";
+
 const MARQUEE_ADS = [
   "🔥 MEGA DEAL: buy 1 cable, get 0 free!",
   "📣 You are visitor number 1,000,000, claim your prize!",
@@ -19,12 +23,24 @@ const MARQUEE_ADS = [
 ];
 
 export default function AdBanner() {
+  const [isPremium, setIsPremium] = useState(false);
+
+  useEffect(() => {
+    const premium = localStorage.getItem("isPremium");
+
+    if (premium === "true") {
+      setIsPremium(true);
+    }
+  }, []);
+
+  if (isPremium) {
+    return null;
+  }
+
   return (
     <>
-      {/* 1) Top marquee strip */}
       <div className="overflow-hidden border-y border-yellow-500/40 bg-yellow-300 text-sm font-bold text-black">
         <div className="ad-marquee flex w-max gap-12 py-2 pl-12">
-          {/* doubled so the scroll loops seamlessly */}
           {[...MARQUEE_ADS, ...MARQUEE_ADS].map((text, i) => (
             <span key={i} className="whitespace-nowrap">
               {text}
@@ -33,7 +49,6 @@ export default function AdBanner() {
         </div>
       </div>
 
-      {/* 2) Floating, blinking corner ad */}
       <aside className="ad-blink fixed bottom-4 right-4 z-50 w-60 rounded-xl border-2 border-pink-500 bg-gradient-to-br from-fuchsia-500 to-orange-400 p-4 text-white shadow-2xl">
         <p className="text-xs uppercase tracking-widest opacity-90">
           Advertisement
